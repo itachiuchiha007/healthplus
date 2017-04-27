@@ -1,0 +1,63 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.anurag.healthplus.fragment.SearchDoctorFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/Cancell"
+            android:hint="Cancel Appointment"
+            android:textStyle="bold"
+            android:ems="10"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp" />
+
+        <Button
+            android:text="Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancelbutton"
+            android:layout_below="@+id/writeppointment"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="73dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/writeppointment"
+            android:background="@color/white"
+            android:paddingLeft="200dp"
+            android:paddingTop="50dp"
+            android:singleLine="true"
+            android:textColor="@color/inputapptid"
+            android:textColorHint="@color/input_login_hint"
+            android:hint="Apt_id"
+            android:layout_alignBottom="@+id/putappointment"
+            android:layout_toRightOf="@+id/cancelbutton"
+            android:layout_toEndOf="@+id/cancelbutton" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/putappointment"
+            android:ems="10"
+            android:textSize="15sp"
+            android:paddingLeft="20dp"
+            android:hint="Appointment ID"
+            android:paddingTop="50dp"
+            android:layout_below="@+id/Cancell"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

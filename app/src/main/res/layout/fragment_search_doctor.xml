@@ -1,0 +1,155 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/Search"
+        android:hint="Search By"
+        android:textStyle="bold"
+        android:ems="10"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/radiogroup"
+        android:layout_below="@id/Search">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:id="@+id/radio1"
+            android:text="Specialization"
+            android:textSize="20sp"
+            android:checked="false"
+            android:buttonTint="@color/your_color"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:id="@+id/radio2"
+            android:text="Hospital"
+            android:textSize="20sp"
+            android:checked="false"
+            android:buttonTint="@color/your_color"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:id="@+id/radio3"
+            android:text="Both"
+            android:textSize="20sp"
+            android:checked="false"
+            android:buttonTint="@color/your_color"/>
+
+
+
+    </RadioGroup>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutSpecialization"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/radiogroup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:visibility="gone">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/spinnerSpecialization"
+            android:text="Specialization"
+            android:textSize="12sp"/>
+
+        <Spinner
+            android:id="@+id/spinnerSpecialization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="12sp"
+            android:spinnerMode="dialog"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutHospital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeLayoutSpecialization"
+        android:layout_marginTop="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/spinnerHospital"
+            android:text="Hospital"
+            android:textSize="12sp"/>
+
+        <Spinner
+            android:id="@+id/spinnerHospital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="12sp"
+            android:spinnerMode="dialog"/>
+    </RelativeLayout>
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:text="Search Doctor"
+        android:id="@+id/searchDoctor"
+        android:clickable="false"
+        android:layout_below="@id/relativeLayoutHospital"
+        android:layout_centerHorizontal="true" />
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/Scroll"
+    android:layout_below="@id/searchDoctor">
+
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/searchDoctor"
+            android:id="@+id/relativeLayout1">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tablelayout"
+                android:background="#CCC"
+                android:paddingTop="1dp"
+                android:layout_marginTop="55dp"
+                android:layout_centerHorizontal="true">
+
+            </TableLayout>
+        </RelativeLayout>
+    </HorizontalScrollView>
+</ScrollView>
+</RelativeLayout>
+

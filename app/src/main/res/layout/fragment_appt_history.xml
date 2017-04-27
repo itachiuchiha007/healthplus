@@ -1,0 +1,52 @@
+<LinearLayout
+    android:id="@+id/linearlayouts"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+     <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:id="@+id/Appointment"
+          android:hint="Appointment History"
+          android:textStyle="bold"
+          android:ems="10"
+          android:textSize="20sp"
+          android:layout_marginTop="30dp"/>
+
+
+ <ScrollView
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+     android:id="@+id/Scroll1"
+     android:layout_below="@id/Appointment">
+
+  <HorizontalScrollView
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:id="@+id/horizontal1">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_below="@id/Appointment"
+       android:id="@+id/relativeLayout12">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/table"
+        android:background="#CCC"
+        android:paddingTop="1dp"
+        android:layout_marginTop="55dp"
+        android:layout_centerHorizontal="true">
+
+    </TableLayout>
+   </RelativeLayout>
+  </HorizontalScrollView>
+ </ScrollView>
+
+
+</LinearLayout>

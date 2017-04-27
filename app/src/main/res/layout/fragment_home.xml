@@ -1,0 +1,164 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/patient_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="Patient ID"
+            android:paddingTop="20dp"
+            android:textSize="12sp"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/appointment_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/patient_id"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="Appointment ID"
+            android:inputType="text"
+            android:paddingTop="20dp"
+            android:textSize="12sp"
+            android:visibility="visible"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutSpecialization"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appointment_id"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/spinnerSpecialization"
+                android:text="Specialization"
+                android:textSize="12sp"/>
+
+            <Spinner
+                android:id="@+id/spinnerSpecialization"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="12sp"
+                android:spinnerMode="dialog"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutHospital"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relativeLayoutSpecialization"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/spinnerHospital"
+                android:text="Hospital"
+                android:textSize="12sp"/>
+
+            <Spinner
+                android:id="@+id/spinnerHospital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="12sp"
+                android:spinnerMode="dialog"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutDoctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayoutHospital"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/spinnerDoctor"
+                android:text="Doctor"
+                android:textSize="12sp"/>
+
+            <Spinner
+                android:id="@+id/spinnerDoctor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView18"
+                android:layout_centerHorizontal="true"
+                android:textSize="12sp"
+                android:spinnerMode="dialog"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/chooseDateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relativeLayoutDoctor"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Choose Date"
+            android:textSize="12sp"/>
+
+        <CalendarView
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_below="@id/chooseDateButton"
+            android:id="@+id/calendar">
+
+        </CalendarView>
+
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/calendar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="12/02/2017"
+            android:textSize="12sp"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/editTextDate"
+            android:id="@+id/spinnerTimeSlot"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_height="wrap_content"
+            android:text="Book Appointment"
+            android:id="@+id/buttonBookAppointment"
+            android:layout_below="@id/spinnerTimeSlot"
+            android:layout_centerHorizontal="true"
+            android:clickable="false"/>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tablelayout"
+            android:layout_centerHorizontal="true">
+
+        </TableLayout>
+    </RelativeLayout>
+</ScrollView>
