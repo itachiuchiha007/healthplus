@@ -1,29 +1,126 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
 
 
     <TextView
-        android:id="@+id/patient_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Patient ID"
-        android:paddingTop="20dp"
-        android:visibility="visible"
         android:layout_marginLeft="120dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="My Profile"
+        android:textColor="@color/bg_login"
+        android:textSize="22sp"
+        android:id="@+id/myprofile"
+        android:textStyle="bold"/>
+
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/myprofile"
+       android:layout_marginTop="30dp"
+       android:id="@+id/relativeLayout12">
+
+       <TextView
+           android:id="@+id/patient_id"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:hint="Patient ID"
+           android:layout_marginLeft="40dp"
+           android:textSize="15sp"
+           />
+       <TextView
+           android:layout_width="50dp"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="200dp"
+           android:textSize="15sp"
+           android:id="@+id/patient_id1"/>
+
+   </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/patient_name"
-        android:ems = "10"
-        android:hint="Patient Name"
-        android:paddingTop="20dp"
-        android:layout_marginLeft="120dp"/>
+        android:layout_below="@id/relativeLayout12"
+        android:layout_marginTop="30dp"
+        android:id="@+id/relativeLayout13">
+        <TextView
+            android:id="@+id/patient_id2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Patient Name"
+            android:layout_marginLeft="40dp"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:textSize="15sp"
+            android:id="@+id/patient_id5"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeLayout13"
+        android:layout_marginTop="30dp"
+        android:id="@+id/relativeLayout14">
+        <TextView
+            android:id="@+id/patient_id4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            android:layout_marginLeft="40dp"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:textSize="15sp"
+            android:id="@+id/patient_id3"/>
+
+    </RelativeLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/relativeLayout14"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:id="@+id/relativeLayout15">-->
+        <!--<TextView-->
+            <!--android:id="@+id/patient_id8"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Password"-->
+            <!--android:layout_marginLeft="40dp"-->
+            <!--android:textSize="15sp"-->
+            <!--/>-->
+        <!--<EditText-->
+            <!--android:layout_width="180dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="200dp"-->
+            <!--android:textSize="15sp"-->
+            <!--android:id="@+id/patient_id7"-->
+            <!--android:inputType="textPassword"/>-->
+
+    <!--</RelativeLayout>-->
+
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Update"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_below="@id/relativeLayout15"-->
+        <!--android:layout_marginTop="50dp"-->
+        <!--android:id="@+id/updatebutton"/>-->
 
 
-</LinearLayout>
+
+</RelativeLayout>

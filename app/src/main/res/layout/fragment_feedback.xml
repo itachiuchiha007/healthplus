@@ -15,48 +15,41 @@
             android:id="@+id/Cancell"
             android:hint="Cancel Appointment"
             android:textStyle="bold"
-            android:ems="10"
-            android:textSize="20sp"
+            android:textColor="@color/inputapptid"
+            android:textSize="22sp"
             android:layout_marginTop="30dp" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/writeppointment"
+            android:background="@color/white"
+            android:layout_marginTop="50dp"
+            android:singleLine="true"
+            android:textColor="@color/inputapptid"
+            android:textColorHint="@color/input_login_hint"
+            android:hint="INPUT APPOINTMENT_ID"
+            android:layout_below="@id/Cancell"/>
+
 
         <Button
             android:text="Cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cancelbutton"
-            android:layout_below="@+id/writeppointment"
+            android:layout_below="@id/writeppointment"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="73dp" />
 
-        <EditText
-            android:layout_width="wrap_content"
+        <TableLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/writeppointment"
-            android:background="@color/white"
-            android:paddingLeft="200dp"
-            android:paddingTop="50dp"
-            android:singleLine="true"
-            android:textColor="@color/inputapptid"
-            android:textColorHint="@color/input_login_hint"
-            android:hint="Apt_id"
-            android:layout_alignBottom="@+id/putappointment"
-            android:layout_toRightOf="@+id/cancelbutton"
-            android:layout_toEndOf="@+id/cancelbutton" />
+            android:id="@+id/cancelappointmenttable"
+            android:background="#CCC"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/cancelbutton">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/putappointment"
-            android:ems="10"
-            android:textSize="15sp"
-            android:paddingLeft="20dp"
-            android:hint="Appointment ID"
-            android:paddingTop="50dp"
-            android:layout_below="@+id/Cancell"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="14dp"
-            android:layout_marginStart="14dp" />
+        </TableLayout>
+
 
     </RelativeLayout>
 

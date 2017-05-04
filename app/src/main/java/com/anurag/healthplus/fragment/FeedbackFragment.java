@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.RemoteControlClient;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,6 +32,9 @@ import com.anurag.healthplus.activity.LoginActivity;
 import com.anurag.healthplus.activity.MainActivity;
 import com.anurag.healthplus.app.AppConfig;
 import com.anurag.healthplus.app.AppController;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,8 +55,10 @@ public class FeedbackFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     Button button;
+    JSONObject jsonObject2;
     RequestQueue requestQueue;
     String patientId;
+    TableLayout tableLayout;
     String urlToCancelAppointment = "http://athena.nitc.ac.in/balmukund_b130168cs/healthplus/get_appointment_table.php";
     EditText editText;
     private ProgressDialog pDialog;
@@ -98,13 +108,15 @@ public class FeedbackFragment extends Fragment {
         requestQueue = Volley.newRequestQueue(getContext());
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
-
+        tableLayout = (TableLayout) view.findViewById(R.id.cancelappointmenttable);
         MainActivity activity = (MainActivity) getActivity();
         patientId = activity.getIntent().getExtras().getString("patient_id");
         Log.d(ContentValues.TAG,"value of patient_id : " + patientId);
         button = (Button) view.findViewById(R.id.cancelbutton);
         editText = (EditText) view.findViewById(R.id.writeppointment);
        final String tag_string_req = "req_login";
+
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +141,30 @@ public class FeedbackFragment extends Fragment {
                             }
                             else {
                                 Toast.makeText(getActivity(), "SuccessFull!", Toast.LENGTH_LONG).show();
+                                final JSONObject jsonObject = new JSONObject();
+                                try {
+                                    jsonObject.put("id",apptId);
+                                    jsonObject.put("patient_id",patientId);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, AppConfig.URL_CANCEL_TABLE, jsonObject, new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response1) {
+                                          jsonObject2 = new JSONObject();
+                                          jsonObject2 = response1;
+                                        Log.d(TAG,"value of response 1 : " + response1);
+                                          init();
+
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+
+                                    }
+                                });
+                                requestQueue.add(jsonObjectRequest);
                             }
 
                         }
@@ -155,11 +191,76 @@ public class FeedbackFragment extends Fragment {
                     };
                     AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
 
+
+
                 }
             }
         });
 
         return view;
+    }
+
+    private void init()
+    {
+
+        TableRow tableRow = new TableRow(getContext());
+        TextView textView = new TextView(getContext());
+        TextView textView1 = new TextView(getContext());
+        TextView textView2 = new TextView(getContext());
+        TextView textView3 = new TextView(getContext());
+
+        textView.setText("App_ID   ");
+        textView.setTextColor(Color.BLUE);
+        textView.setTextSize(20);
+        tableRow.addView(textView);
+
+        textView1.setText("Doctor_Name     ");
+        textView1.setTextColor(Color.BLUE);
+        textView1.setTextSize(20);
+        tableRow.addView(textView1);
+        textView2.setText("Appointment_Time    ");
+        textView2.setTextColor(Color.BLUE);
+        textView2.setTextSize(20);
+        tableRow.addView(textView2);
+        textView3.setText("Status");
+        textView3.setTextColor(Color.BLUE);
+        textView3.setTextSize(20);
+        tableRow.addView(textView3);
+        tableLayout.addView(tableRow);
+        try {
+
+
+
+                TableRow tableRow1 = new TableRow(getContext());
+                TextView textView4 = new TextView(getContext());
+                TextView textView5 = new TextView(getContext());
+                TextView textView6 = new TextView(getContext());
+                TextView textView7 = new TextView(getContext());
+
+                textView5.setText("AP_ID " + jsonObject2.getString("sn"));
+                textView5.setTextColor(Color.BLACK);
+                tableRow1.addView(textView5);
+
+                textView4.setText(jsonObject2.getString("DoctorId"));
+                textView4.setTextColor(Color.BLACK);
+                tableRow1.addView(textView4);
+
+                textView6.setText(jsonObject2.getString("dates"));
+                textView6.setTextColor(Color.BLACK);
+                tableRow1.addView(textView6);
+
+                textView7.setText(jsonObject2.getString("appointment_status"));
+                textView7.setTextColor(Color.BLACK);
+                tableRow1.addView(textView7);
+                tableLayout.addView(tableRow1);
+
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void hideDialog() {

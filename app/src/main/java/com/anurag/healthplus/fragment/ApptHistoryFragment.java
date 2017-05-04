@@ -10,9 +10,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -48,7 +51,10 @@ public class ApptHistoryFragment extends Fragment {
     TableLayout tableLayout;
     JSONArray object,array;
     RequestQueue requestQueue;
-    String patient_id;
+    String patient_id,input;
+    EditText editText;
+    int flag;
+    Button button1,button2,button3,button4;
     String urlToGetAppointmentHistory = "http://athena.nitc.ac.in/balmukund_b130168cs/healthplus/get_appointment_table.php";
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -94,6 +100,11 @@ public class ApptHistoryFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_appt_history, container, false);
         tableLayout = (TableLayout) view.findViewById(R.id.table);
         requestQueue = Volley.newRequestQueue(getContext());
+        button1 = (Button) view.findViewById(R.id.button);
+        button2 = (Button) view.findViewById(R.id.button2);
+        button3 = (Button) view.findViewById(R.id.button3);
+        button4 = (Button) view.findViewById(R.id.button4);
+        editText = (EditText) view.findViewById(R.id.enterdoctor);
 
         MainActivity activity = (MainActivity) getActivity();
         patient_id = activity.getIntent().getExtras().getString("patient_id");
@@ -153,8 +164,134 @@ public class ApptHistoryFragment extends Fragment {
         requestQueue.add(jsonArrayRequest);
 
 
+       button1.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               editText.setVisibility(view.VISIBLE);
+               flag = 1;
+           }
+       });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editText.setVisibility(view.VISIBLE);
+                flag=2;
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editText.setVisibility(view.VISIBLE);
+                flag=3;
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                input = editText.getText().toString().trim();
+                init1();
+            }
+        });
+
 
      return view;
+    }
+    private void init1()
+    {
+        if(!input.isEmpty()){
+            cleanTable(tableLayout);
+
+            for(int i = 0;i<object.length();i++ )
+            {
+
+
+                try {
+                    JSONObject objectJson = object.getJSONObject(i);
+
+                    if(input.equals(objectJson.getString("firstname")+" "+objectJson.getString("lastname")) && flag ==1) {
+                        TableRow tableRow1 = new TableRow(getContext());
+                        TextView textView4 = new TextView(getContext());
+                        TextView textView5 = new TextView(getContext());
+                        TextView textView6 = new TextView(getContext());
+                        TextView textView7 = new TextView(getContext());
+
+                        textView5.setText("AP_ID " + objectJson.getString("sn"));
+                        textView5.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView5);
+
+                        textView4.setText(objectJson.getString("firstname") + " " + objectJson.getString("lastname"));
+                        textView4.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView4);
+
+                        textView6.setText(objectJson.getString("dates"));
+                        textView6.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView6);
+
+                        textView7.setText(objectJson.getString("appointment_status"));
+                        textView7.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView7);
+                        tableLayout.addView(tableRow1);
+                    }
+                    if(input.equals(objectJson.getString("dates")) && flag ==2) {
+                        TableRow tableRow1 = new TableRow(getContext());
+                        TextView textView4 = new TextView(getContext());
+                        TextView textView5 = new TextView(getContext());
+                        TextView textView6 = new TextView(getContext());
+                        TextView textView7 = new TextView(getContext());
+
+                        textView5.setText("AP_ID " + objectJson.getString("sn"));
+                        textView5.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView5);
+
+                        textView4.setText(objectJson.getString("firstname") + " " + objectJson.getString("lastname"));
+                        textView4.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView4);
+
+                        textView6.setText(objectJson.getString("dates"));
+                        textView6.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView6);
+
+                        textView7.setText(objectJson.getString("appointment_status"));
+                        textView7.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView7);
+                        tableLayout.addView(tableRow1);
+                    }
+                    if(input.equals(objectJson.getString("appointment_status")) && flag ==3) {
+                        TableRow tableRow1 = new TableRow(getContext());
+                        TextView textView4 = new TextView(getContext());
+                        TextView textView5 = new TextView(getContext());
+                        TextView textView6 = new TextView(getContext());
+                        TextView textView7 = new TextView(getContext());
+
+                        textView5.setText("AP_ID " + objectJson.getString("sn"));
+                        textView5.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView5);
+
+                        textView4.setText(objectJson.getString("firstname") + " " + objectJson.getString("lastname"));
+                        textView4.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView4);
+
+                        textView6.setText(objectJson.getString("dates"));
+                        textView6.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView6);
+
+                        textView7.setText(objectJson.getString("appointment_status"));
+                        textView7.setTextColor(Color.BLACK);
+                        tableRow1.addView(textView7);
+                        tableLayout.addView(tableRow1);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }
+        else {
+            Toast.makeText(getContext(),"PLZ PROVIDE INPUT",Toast.LENGTH_LONG).show();
+        }
     }
 
     private void init()
@@ -194,6 +331,15 @@ public class ApptHistoryFragment extends Fragment {
                 e.printStackTrace();
             }
 
+        }
+    }
+    private void cleanTable(TableLayout table) {
+
+        int childCount = table.getChildCount();
+
+        // Remove all rows except the first one
+        if (childCount > 1) {
+            table.removeViews(1, childCount - 1);
         }
     }
 

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtWebsite;
     private Toolbar toolbar;
-    private FloatingActionButton fab;
+//    private FloatingActionButton fab;
     SQLiteDatabase db;
     // urls to load navigation header background image
     // and profile image
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         db = dbHelper.getWritableDatabase();
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab = (FloatingActionButton) findViewById(R.id.fab);
 
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
@@ -91,13 +91,13 @@ public class MainActivity extends AppCompatActivity {
         // load toolbar titles from string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+/*        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         // load nav menu header data
         loadNavHeader();
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 //                .into(imgProfile);
 
         // showing dot next to notifications label
-        navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
+//        navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
     }
 
     /***
@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                         android.R.anim.fade_out);
                 fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
+//                fragmentTransaction.commit();
                 fragmentTransaction.commitAllowingStateLoss();
             }
         };
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // show or hide the fab button
-        toggleFab();
+//        toggleFab();
 
         //Closing drawer on item click
         drawer.closeDrawers();
@@ -263,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_about_us:
                         // launch new intent instead of loading fragment
-                        startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_privacy_policy:
@@ -273,15 +274,18 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     default:
                         navItemIndex = 0;
+                        CURRENT_TAG = TAG_HOME;
                 }
 
                 //Checking if the item is in checked state or not, if not make it in checked state
                 if (menuItem.isChecked()) {
-                    menuItem.setChecked(false);
+                    // Rahul commented this line of code.
+//                    menuItem.setChecked(false);
                 } else {
                     menuItem.setChecked(true);
                 }
-                menuItem.setChecked(true);
+                // Rahul commented this line of code.
+//                menuItem.setChecked(true);
 
                 loadHomeFragment();
 
@@ -381,9 +385,9 @@ public class MainActivity extends AppCompatActivity {
 
     // show or hide the fab
     private void toggleFab() {
-        if (navItemIndex == 0)
+        /*if (navItemIndex == 0)
             fab.show();
         else
-            fab.hide();
+            fab.hide();*/
     }
 }

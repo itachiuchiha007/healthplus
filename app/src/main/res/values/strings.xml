@@ -8,6 +8,10 @@
 
 
     <string name="hint_email">Email</string>
+    <string name="hint_userid">UserId</string>
+    <string name="hint_newpassword">New Password</string>
+    <string name="hint_change">UPDATE</string>
+    <string name="hint_retypepassword">Retype Password</string>
     <string name="hint_password">Password</string>
     <string name="hint_name">Fullname</string>
     <string name="btn_login">LOGIN</string>
@@ -25,11 +29,11 @@
 
     <!-- Navigation Drawer menu labels -->
     <string name="nav_home">Home</string>
-    <string name="nav_report_history">See Details</string>
+    <string name="nav_report_history">My Details</string>
     <string name="nav_appt_history">Appointment History</string>
     <string name="nav_search_doctor">Find a doctor</string>
     <string name="nav_feedback">Cancel Appointment</string>
-    <string name="nav_about_us">About Us</string>
+    <string name="nav_about_us">Logout</string>
 
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="nav_item_activity_titles">

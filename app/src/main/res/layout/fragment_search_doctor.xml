@@ -10,13 +10,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="SEARCH DOCTOR"
+        android:textColor="@color/inputapptid"
+        android:textSize="22sp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/Search"
         android:hint="Search By"
-        android:textStyle="bold"
         android:ems="10"
-        android:textSize="20sp"
-        android:layout_marginTop="30dp"/>
+        android:textSize="18sp"
+        android:layout_marginTop="90dp"/>
 
     <RadioGroup
         android:layout_width="wrap_content"
@@ -72,16 +79,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/spinnerSpecialization"
+            android:layout_marginLeft="50dp"
             android:text="Specialization"
-            android:textSize="12sp"/>
+            android:textSize="15sp"/>
 
         <Spinner
             android:id="@+id/spinnerSpecialization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textSize="12sp"
+            android:layout_marginLeft="200dp"
+            android:textSize="15sp"
             android:spinnerMode="dialog"/>
     </RelativeLayout>
 
@@ -90,22 +97,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/relativeLayoutSpecialization"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/spinnerHospital"
+            android:layout_marginLeft="50dp"
             android:text="Hospital"
-            android:textSize="12sp"/>
+            android:textSize="15sp"/>
 
         <Spinner
             android:id="@+id/spinnerHospital"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textSize="12sp"
+            android:layout_marginLeft="200dp"
+            android:textSize="15sp"
             android:spinnerMode="dialog"/>
     </RelativeLayout>
 

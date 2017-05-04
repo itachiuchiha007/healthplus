@@ -8,11 +8,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.anurag.healthplus.R;
 import com.anurag.healthplus.activity.MainActivity;
 
@@ -36,7 +41,12 @@ public class ReportHistoryFragment extends Fragment {
 
     View view;
     String urlToGetPatientInfo = "http://athena.nitc.ac.in/balmukund_b130168cs/healthplus/get_patient_info.php";
+    String urlToUpdate = "http://athena.nitc.ac.in/balmukund_b130168cs/healthplus/update_patient_info";
     String patientId;
+    RequestQueue requestQueue;
+    TextView textView;
+    TextView editText1,editText2,editText3;
+    Button button;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -86,9 +96,15 @@ public class ReportHistoryFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
         patientId = activity.getIntent().getExtras().getString("patient_id");
         Log.d(TAG,"value of patient_id : " + patientId);
+        textView = (TextView) view.findViewById(R.id.patient_id1);
+        textView.setText(patientId);
+        requestQueue = Volley.newRequestQueue(getContext());
+        //button = (Button) view.findViewById(R.id.updatebutton);
+        editText1 = (TextView) view.findViewById(R.id.patient_id3);
+        editText2 = (TextView) view.findViewById(R.id.patient_id5);
+       // editText3 = (EditText) view.findViewById(R.id.patient_id7);
 
-
-        JSONObject object = new JSONObject();
+        final JSONObject object = new JSONObject();
         try {
             object.put("patient_id",patientId);
         } catch (JSONException e) {
@@ -97,7 +113,15 @@ public class ReportHistoryFragment extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlToGetPatientInfo, object, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                try {
+                    editText1.setText(response.getString("address"));
+                    editText2.setText(response.getString("firstname")+" "+response.getString("lastname"));
+                    //editText3.setText(response.getString("password"));
+                    Log.d(TAG,"value of response in my profile " + response);
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -105,6 +129,35 @@ public class ReportHistoryFragment extends Fragment {
 
             }
         });
+        requestQueue.add(jsonObjectRequest);
+//
+//        try {
+//            object.put("firstname",editText2.getText().toString().trim());
+//            object.put("password",editText3.getText().toString().trim());
+//            object.put("address",editText1.getText().toString().trim());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
+
+
+//     button.setOnClickListener(new View.OnClickListener() {
+//         @Override
+//         public void onClick(View view) {
+//             JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.POST, urlToUpdate, object, new Response.Listener<JSONObject>() {
+//                 @Override
+//                 public void onResponse(JSONObject response) {
+//
+//                 }
+//             }, new Response.ErrorListener() {
+//                 @Override
+//                 public void onErrorResponse(VolleyError error) {
+//
+//                 }
+//             });
+//             requestQueue.add(jsonObjectRequest1);
+//         }
+//     });
 
         return view;
     }

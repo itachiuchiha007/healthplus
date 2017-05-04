@@ -19,6 +19,7 @@ import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -35,6 +36,7 @@ import com.anurag.healthplus.utils.Utilities;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -59,6 +61,7 @@ public class   HomeFragment extends Fragment
 	Button chooseDateButton,bookAppointment;
 	Calendar myCalendar;
 	EditText editTextDate;
+	TextView patientID,timeslot;
 	android.widget.Spinner spinnerSpecialization, spinnerHospital, spinnerDoctor, spinnerTimeSlot;
 	Utilities utils;
 	String urlGetSpecializationSpinner = "http://athena.nitc.ac"
@@ -72,7 +75,7 @@ public class   HomeFragment extends Fragment
 	String[] timelist,getHospitalIdList;
 	RequestQueue requestQueue;
 	String hospitalId,hospitalname;
-	String specialization;
+	String specialization,time;
 	String appointId,doctorId = "",patientId;
 	CalendarView calendar;
 
@@ -153,7 +156,7 @@ public class   HomeFragment extends Fragment
 							 Bundle savedInstanceState)
 	{
 		// Inflate the layout for this fragment
-		View view = inflater.inflate(R.layout.fragment_home, container, false);
+		final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 		chooseDateButton = (Button) view.findViewById(R.id.chooseDateButton);
 		bookAppointment = (Button) view.findViewById(R.id.buttonBookAppointment);
@@ -164,12 +167,15 @@ public class   HomeFragment extends Fragment
 		requestQueue = Volley.newRequestQueue(getContext());
 		spinnerTimeSlot = (Spinner) view.findViewById(R.id.spinnerTimeSlot);
 		calendar = (CalendarView) view.findViewById(R.id.calendar);
+		patientID = (TextView) view.findViewById(R.id.patientID);
+        timeslot = (TextView) view.findViewById(R.id.timeslot);
+
 
 
 		MainActivity activity = (MainActivity) getActivity();
 		patientId = activity.getIntent().getExtras().getString("patient_id");
 		Log.d(TAG,"value of patient_id : " + patientId);
-
+		patientID.setText(patientId);
  //// THIS IS TO GET APPOINTMENTID WHICH IS NOT WORKING PLZ CHECK
  	    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlGetAppointmentId, null, new Response.Listener<JSONObject>() {
 			@Override
@@ -482,7 +488,7 @@ public class   HomeFragment extends Fragment
 //		chooseDateButton .setOnClickListener(new View.OnClickListener() {
 //			@Override
 //			public void onClick(View view) {
-//				showDialogue(DATE_DIALOG_ID);
+//				calendar.setVisibility(View.VISIBLE);
 //			}
 //		});
 //
@@ -492,19 +498,51 @@ public class   HomeFragment extends Fragment
 //		day = c.get(Calendar.DAY_OF_MONTH);
 
 //		updateDisplay();
+
+
+
 		calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 			@Override
 			public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
 
 				editTextDate.setText(new StringBuilder()
-				.append(i).append("-").append(0)
+				.append(i).append("-")
 				.append(i1+1).append("-")
 				.append(i2));
 				date = editTextDate.getText().toString();
 				Log.d(TAG,"edittextdate : " + date);
 			    setBoolean(3,true);
+				spinnerTimeSlot.setVisibility(View.VISIBLE);
+				timeslot.setVisibility(View.VISIBLE);
+
+				timelist = new String[] {"9-10","10-11","11-12","2-3","4-5","5-6"};
+				ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout
+						.simple_spinner_item, timelist);
+
+				spinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+				spinnerTimeSlot.setAdapter(spinnerAdapter);
 			}
 		});
+
+				spinnerTimeSlot.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		{
+			@Override
+			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+			{
+//				Log.d(TAG, "value : " + adapterView.getItemAtPosition(i).toString());
+//				Log.d(TAG, "value : " + spinnerSpecialization.getSelectedItem().toString());
+//				Log.d(TAG, "value : " + myCalendar.getTime());
+				time = spinnerTimeSlot.getSelectedItem().toString();
+
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> adapterView)
+			{
+
+			}
+		});
+
 
 
 		bookAppointment.setOnClickListener(new View.OnClickListener()
@@ -522,7 +560,7 @@ public class   HomeFragment extends Fragment
 						jsonObject.put("doctor_id", doctorId);
 						jsonObject.put("dates", date);
 						Log.d(TAG, "value of date : " + date);
-						jsonObject.put("timeslot", "00:11:09");
+						jsonObject.put("timeslot", time);
 						jsonObject.put("sn",appointId);
 						Log.d(TAG, "jsonobject : " + jsonObject);
 
@@ -530,7 +568,7 @@ public class   HomeFragment extends Fragment
 					else
 					{
 
-						Toast.makeText(getContext(),"PLZ PROVIDE ALL INPUT",Toast.LENGTH_LONG).show();
+							Toast.makeText(getContext(),"PLZ PROVIDE ALL INPUT",Toast.LENGTH_LONG).show();
 
 					}
 				} catch (JSONException e) {
@@ -543,11 +581,24 @@ public class   HomeFragment extends Fragment
 					public void onResponse(JSONObject response) {
 						Log.d(TAG,"value of response : " + response);
 
+						try {
+							if(response.getString("id").equals("0"))
+							{
+								Toast.makeText(getContext(),"Unsuccessful",Toast.LENGTH_LONG).show();
+							}
+							else
+							{
+								Toast.makeText(getContext(),"Successful",Toast.LENGTH_LONG).show();
+							}
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+
 					}
 				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-
+                      Log.e("error : ",error.toString());
 					}
 				});
 				requestQueue.add(jsonObjectRequest);

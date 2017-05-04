@@ -37,7 +37,7 @@ import com.anurag.healthplus.app.AppConfig;
 
 public class LoginActivity extends Activity {
     private static final String TAG = RegisterActivity.class.getSimpleName();
-    private Button btnLogin;
+    private Button btnLogin,forgot;
     private Button btnLinkToRegister;
     private EditText inputEmail;
     private EditText inputPassword;
@@ -54,6 +54,7 @@ public class LoginActivity extends Activity {
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        forgot = (Button) findViewById(R.id.forgot);
         btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
 
         // Progress dialog
@@ -104,6 +105,15 @@ public class LoginActivity extends Activity {
             public void onClick(View view) {
                 Intent i = new Intent(LoginActivity.this,
                         RegisterActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent i = new Intent(LoginActivity.this,PrivacyPolicyActivity.class);
                 startActivity(i);
                 finish();
             }

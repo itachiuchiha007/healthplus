@@ -150,15 +150,15 @@ public class Utilities
 
 		while (count < doctorList.length)
 		{
-		//	Log.d(TAG,"value 1 not related in utilites : " + doctorList[count][4]);
-		//	Log.d(TAG,"value 2 not related in utilites : " + doctorList[count][5]);
-		//	Log.d(TAG,"value hospital in utilies : " + hospitalId);
-		//	Log.d(TAG,"value spec in utilies : " + specialization);
+			Log.d(TAG,"value 1 not related in utilites : " + doctorList[count][4]);
+			Log.d(TAG,"value 2 not related in utilites : " + doctorList[count][5]);
+			Log.d(TAG,"value hospital in utilies : " + hospitalId);
+			Log.d(TAG,"value spec in utilies : " + specialization);
                  if(doctorList[count][4].equals(hospitalId) && doctorList[count][5].equals(specialization))
 				 {
 					 doctorNameList[count] = doctorList[count][1] + " " + doctorList[count][2];
-		//			 Log.d(TAG,"inside checking value : " + doctorList[count][4]);
-		//			 Log.d(TAG,"inside checking value : " + doctorList[count][5]);
+					 Log.d(TAG,"inside checking value : " + doctorList[count][4]);
+					 Log.d(TAG,"inside checking value : " + doctorList[count][5]);
 				 }
 			else
 				 {

@@ -8,4 +8,5 @@ public class AppConfig {
 	public static String URL_REGISTER = "http://athena.nitc.ac.in/balmukund_b130168cs/healthplus/register.php";
 
 	public static  String URL_CANCEL = "http://athena.nitc.ac.in/balmukund_b130168cs/healthplus/cancelappt.php";
+	public static  String URL_CANCEL_TABLE = "http://athena.nitc.ac.in/balmukund_b130168cs/healthplus/cancelappttable.php";
 }
